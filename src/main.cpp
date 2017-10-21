@@ -1,16 +1,10 @@
-#ifndef UNIT_TEST  // IMPORTANT LINE!
-
 #include <Arduino.h>
-#include <ESPectro.h>
 
 #define LED_PIN 15
-ESPectro board (ESPectro_V3);
 
 void setup()
 {
   // initialize LED digital pin as an output.
-  board.turnOffAllNeopixel();
-  board.turnOffLED();
   pinMode(LED_PIN, OUTPUT);
 }
 
@@ -25,6 +19,4 @@ void loop()
    // wait for a second
   delay(1000);
 }
-
-#endif    // IMPORTANT LINE!
 
