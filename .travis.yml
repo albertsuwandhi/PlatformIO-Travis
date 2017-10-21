@@ -35,8 +35,7 @@ cache:
 
 install:
      - pip install -U platformio
-     - pio platform install espressif32
-     - pio lib install 369
+     - pio update
 
 script:
      - platformio run -e espectro
