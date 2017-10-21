@@ -35,9 +35,14 @@ cache:
 
 install:
      - pip install -U platformio
+     - pio lib install 369
 
 script:
-     - platformio run
+     - platformio run -e espectro
+notifications:
+  email:
+    on_success: albert.suwandhi@gmail.com
+    on_failure: albert.suwandhi@gmail.com
 
 
 #
