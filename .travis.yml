@@ -35,6 +35,7 @@ cache:
 
 install:
      - pip install -U platformio
+     - pip platform install espressif32
      - pio lib install 369
 
 script:
