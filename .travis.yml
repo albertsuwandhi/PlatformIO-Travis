@@ -35,6 +35,8 @@ cache:
 
 install:
      - pip install -U platformio
+     - pio platform install espressif8266
+     - pio platform install atmelavr
 
 script:
      - platformio run
