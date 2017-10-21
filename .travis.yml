@@ -1,70 +1,27 @@
-# Continuous Integration (CI) is the practice, in software
-# engineering, of merging all developer working copies with a shared mainline
-# several times a day < http://docs.platformio.org/page/ci/index.html >
-#
-# Documentation:
-#
-# * Travis CI Embedded Builds with PlatformIO
-#   < https://docs.travis-ci.com/user/integration/platformio/ >
-#
-# * PlatformIO integration with Travis CI
-#   < http://docs.platformio.org/page/ci/travis.html >
-#
-# * User Guide for `platformio ci` command
-#   < http://docs.platformio.org/page/userguide/cmd_ci.html >
-#
-#
-# Please choice one of the following templates (proposed below) and uncomment
-# it (remove "# " before each line) or use own configuration according to the
-# Travis CI documentation (see above).
-#
-
-
-#
-# Template #1: General project. Test it using existing `platformio.ini`.
-#
-
 language: python
 python:
-     - "2.7"
-
+- '2.7'
 sudo: false
 cache:
-     directories:
-         - "~/.platformio"
-
+  directories:
+  - ~/.platformio
 install:
-     - pip install platformio
-     - pio update
-
+- pip install platformio
+- pio update
 script:
-     - platformio run -e nodemcu
+- platformio run -e nodemcu
 notifications:
   email:
     on_success: albert.suwandhi@gmail.com
     on_failure: albert.suwandhi@gmail.com
-
-
-#
-# Template #2: The project is intended to by used as a library with examples
-#
-
-# language: python
-# python:
-#     - "2.7"
-#
-# sudo: false
-# cache:
-#     directories:
-#         - "~/.platformio"
-#
-# env:
-#     - PLATFORMIO_CI_SRC=path/to/test/file.c
-#     - PLATFORMIO_CI_SRC=examples/file.ino
-#     - PLATFORMIO_CI_SRC=path/to/test/directory
-#
-# install:
-#     - pip install -U platformio
-#
-# script:
-#     - platformio ci --lib="." --board=ID_1 --board=ID_2 --board=ID_N
+env:
+  global:
+    secure: cJqfQUqNWdPVuFCRPykN+XvWco/082mNhiWCmYUghlJmHJsAaFzrrZu4Se2kcOn7BMzleuYHkwMq/NNrqqlPllaRHItiPSxPAUFwRY6IiwkGjJ3BzzUSkTn5WHXFlp0d/NC3K5HtWlZK4YYCzy+hflYTD/asAe/sae/ZIxOCrJCoPhiD1jeA3/ECyhSGHVowAWi02ydtDt/o4QwI6aS3ThQPrQOXbkz66F2JEMFu2/epZb5227DIORovgNU4J9dU9/+AhB/RtTat9BSGaN057B7QA6SfR5ZfuNLvcVBuzXUlW1Oz2Biob9cwL2gt5MqkHyNse8w7FZbvZPYFJlRyW3ImzMn5+nQWMu2xYtzRpOKnJuzvaIadWWRKt4QzYEco9XB6VrNDjbEgR4UODK3mMb5ApKiK2pkuYqIVVeSssKQZ09LBQbni4v304Nj4G4PDMNGA6ReUje0etxiXlMNyymXmRR2s3E4O+qYoBUGU1UV7E9rFxDp6+7969ZM6ZyevuWwnxsJIyslzZTJulTfHyNwUghjnFc2+BUhm/KKxsG9ze4hTnPR4EhGfH/vm/wRGT+Sy4rFvvEQA9m2TjC/RwfVLDIh80wupikfAu9qGUSqdrZhcD6QQwhJpd62hepvZNSS4zR3ejDGF6sBjhd1pE5t4aFlrrzzouShGFkobsao=
+deploy:
+  provider: releases
+  api_key: ${GH_TOKEN}
+  file:
+    - $TRAVIS_BUILD_DIR/.pioenvs/nodemcu/firmware.elf
+  skip_cleanup: true
+  on:
+    tags: true 
