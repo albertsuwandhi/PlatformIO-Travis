@@ -38,7 +38,7 @@ install:
      - pio update
 
 script:
-     - platformio run -e espectro
+     - platformio run -e nodemcu
 notifications:
   email:
     on_success: albert.suwandhi@gmail.com
